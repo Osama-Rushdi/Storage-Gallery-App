@@ -1,6 +1,9 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
+    id("com.google.dagger.hilt.android")
+
 }
 
 android {
@@ -46,9 +49,39 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
+
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
+
+    //room database
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+    //Others
+    //Glide
+    implementation(libs.glide)
+    //swipe to refresh
     implementation(libs.androidx.swiperefreshlayout)
+    //lottie
     implementation (libs.lottie)
+    //facebook shimmer
     implementation (libs.shimmer)
+
+    //live data
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    //Kotlin Coroutines
+    implementation(libs.kotlinx.coroutines.android)
+
+    //Hilt Dagger
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
