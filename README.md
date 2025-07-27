@@ -1,46 +1,65 @@
 # 📸 Photo Gallery App
 
-A modern Android app built with Kotlin that fetches and displays high-quality photos from the [Pexels API](https://www.pexels.com/api/). The app follows the MVVM architecture and includes features such as shimmer loading, dark/light mode toggle, swipe to refresh, and endless scroll with pagination.
+A simple Android application to display a list of curated photos using the [Pexels API](https://www.pexels.com/api/).  
+Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 
 ---
 
-## ✅ Features
+## 🚀 Features
 
-- Fetch curated photo lists from Pexels API
-- Smooth loading animations using Shimmer effect
-- Infinite scroll (manual pagination)
-- Swipe to refresh
-- Light & Dark mode support with animated toggle
-- Beautiful staggered grid layout using RecyclerView
+- Fetches and displays curated photos from Pexels API.
+- Supports pagination (infinite scroll).
+- Shimmer loading effect while images load.
+- Light/Dark mode switch with animation.
+- Swipe to refresh.
+- Error handling with fallback message.
 
 ---
 
-## 🧪 Tech Stack
+## 📱 Screenshots
+
+### 🔹 Home Screen
+![screen1](screenshots/screen1.jpg)
+
+### 🔹 Loading with Shimmer
+![screen2](screenshots/screen2.jpg)
+
+### 🔹 Dark Mode
+![screen3](screenshots/screen3.jpg)
+
+### 🔹 Grid View
+![screen4](screenshots/screen4.jpg)
+
+### 🔹 App Logo
+![img](screenshots/img.png)
+
+---
+
+## 🎬 Demo Video
+
+Find demo video inside the [`screenshots/`](screenshots/) folder:  
+`vid.mp4`
+
+> 🔔 For better preview, upload the video to [YouTube](https://youtube.com) or [Google Drive](https://drive.google.com) and link it here.
+
+---
+
+## 🛠️ Tech Stack
 
 - Kotlin
 - MVVM Architecture
-- Retrofit & Gson
-- Hilt for Dependency Injection
-- Glide for image loading
-- RecyclerView + StaggeredGridLayoutManager
-- Facebook Shimmer library
-- AppCompatDelegate for theme switching
+- Retrofit & OkHttp
+- Glide
+- Paging (Manual)
+- Material Components
+- Shimmer Layout
+- Hilt (Dependency Injection)
 
 ---
 
-## 🖼️ Screenshots
+## 🧪 API Used
 
+[Pexels API – Curated Photos](https://www.pexels.com/api/documentation/)
 
-![Home Screen](screenshots/screen1.png)
-
-
-![Dark Mode](screenshots/screen2.png)
-
----
-
-## 🚀 Getting Started
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/photo-gallery-app.git
+```http
+GET https://api.pexels.com/v1/curated?page=1&per_page=20
