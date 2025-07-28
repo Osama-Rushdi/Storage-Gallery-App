@@ -18,20 +18,23 @@ Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 
 ## 📱 Screenshots
 
-### 🔹 Home Screen
-![screen1](screenshots/screen1.jpg)
+🖼 Screenshots
 
-### 🔹 Loading with Shimmer
-![screen2](screenshots/screen2.jpg)
+🚀 Splash
+![splash](screenshots/splash.jpg)
 
-### 🔹 Dark Mode
-![screen3](screenshots/screen3.jpg)
+🌙 Home Dark
+![HomeDark](screenshots/HomeDark.jpg)
 
-### 🔹 Grid View
-![screen4](screenshots/screen4.jpg)
+☀ Home Light
+![homeLight](screenshots/homeLight.jpg)
 
-### 🔹 App Home Dark
-![img](screenshots/img.png)
+✨ Home Shimmer
+![homeShimmer](screenshots/homeShimmer.jpg)
+
+🔄 Refresh
+![refresh](screenshots/refresh.jpg)
+
 
 ---
 

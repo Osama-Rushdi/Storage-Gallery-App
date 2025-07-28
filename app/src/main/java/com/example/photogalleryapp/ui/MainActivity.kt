@@ -3,15 +3,19 @@ package com.example.photogalleryapp.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import com.example.photogalleryapp.data.mappers.toDomain
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.photogalleryapp.data.repository_impl.view_model.GalleryViewModel
 import com.example.photogalleryapp.data.repository_impl.view_model.StateShow
+import com.example.photogalleryapp.data.utils.connectively.Connectivity
 import com.example.photogalleryapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -19,6 +23,10 @@ class MainActivity : AppCompatActivity() {
     private var currentNightMode: Int = 0
     private lateinit var binding: ActivityMainBinding
     private val adapter = StorageItemAdapter()
+
+    @Inject
+    lateinit var connectivity:Connectivity
+    private var isOnline = true
     private val viewModel: GalleryViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,8 +46,7 @@ class MainActivity : AppCompatActivity() {
             binding.modeAnim.progress = 0.5f
             binding.modeAnim.playAnimation()
             play = false
-        }
-        else{
+        } else {
             binding.modeAnim.setMinAndMaxProgress(0.5f, 1f)
             binding.modeAnim.progress = 0.5f
             binding.modeAnim.playAnimation()
@@ -51,17 +58,21 @@ class MainActivity : AppCompatActivity() {
         viewModel.stateShow.observe(this) { state ->
             when (state) {
                 is StateShow.Error -> {
-                    showError(state.errorMessage)
+                    showError(state.message)
                 }
 
                 StateShow.Loading -> {}
 
                 is StateShow.Success -> {
                     binding.swipeRefreshLayout.isRefreshing = false
-                    adapter.submitList(state.photos.map { it.toDomain() }.toList())
+                    adapter.submitList(state.photos.toList())
                 }
 
-
+                is StateShow.Offline -> {
+                    binding.swipeRefreshLayout.isRefreshing = false
+                    adapter.submitList(state.photos.toList())
+                    Toast.makeText(this, "no Internet connection", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -69,13 +80,14 @@ class MainActivity : AppCompatActivity() {
     private fun initListeners() {
 
         binding.recyclerView.adapter = adapter
-        binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.itemAnimator = null
 
         binding.swipeRefreshLayout.setOnRefreshListener {
-            viewModel.loadPhotos()
+            if (connectivity.isOnline()) {
+                viewModel.loadPhotos()
+            }
+            else  binding.swipeRefreshLayout.isRefreshing=false
         }
-
         binding.modeAnim.setOnClickListener {
             binding.modeAnim.apply {
                 if (play) {
@@ -100,6 +112,24 @@ class MainActivity : AppCompatActivity() {
             }, 300)
         }
 
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as? StaggeredGridLayoutManager
+                layoutManager?.let {
+                    val totalItemCount = it.itemCount
+                    val lastVisibleItemPositions = it.findLastVisibleItemPositions(null)
+                    val lastVisibleItem = lastVisibleItemPositions.maxOrNull() ?: 0
+
+                    if (lastVisibleItem >= totalItemCount - 1) {
+                        viewModel.loadPhotos()
+                    }
+                }
+            }
+        }
+        )
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -115,7 +145,7 @@ class MainActivity : AppCompatActivity() {
     private fun showError(message: String) {
         AlertDialog.Builder(this).apply {
             setTitle("Error")
-            setMessage(message ?: "")
+            setMessage(message)
             setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
