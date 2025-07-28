@@ -30,17 +30,12 @@ Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 ### 🔹 Grid View
 ![screen4](screenshots/screen4.jpg)
 
-### 🔹 App Logo
+### 🔹 App Home Dark
 ![img](screenshots/img.png)
 
 ---
 
-## 🎬 Demo Video
-
-Find demo video inside the [`screenshots/`](screenshots/) folder:  
-`vid.mp4`
-
-> 🔔 For better preview, upload the video to [YouTube](https://youtube.com) or [Google Drive](https://drive.google.com) and link it here.
+## 🎬 Demo Video (https://drive.google.com/file/d/1MSM-lQ3GioY3woNjWdi0NRX-bGYYwZu_/view?usp=drivesdk)
 
 ---
 
