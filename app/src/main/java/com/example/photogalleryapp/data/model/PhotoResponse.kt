@@ -4,7 +4,6 @@ package com.example.photogalleryapp.data.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-
 data class PhotoResponse(
 
     @field:SerializedName("src")
@@ -24,6 +23,7 @@ data class PhotoResponse(
 
     @field:SerializedName("photographer_url")
     val photographerUrl: String? = null,
+
 
     @field:SerializedName("id")
     val id: Int? = null,

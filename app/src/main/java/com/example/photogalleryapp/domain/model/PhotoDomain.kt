@@ -1,6 +1,7 @@
 package com.example.photogalleryapp.domain.model
 
 
+
 data class PhotoDomain(
 
     val photographerUrl: String? = null,
@@ -13,7 +14,10 @@ data class PhotoDomain(
 
     val liked: Boolean = false,
 
-    val height: Int = 0
+    val height: Int = 0,
+
+    val width: Int = 0
+
 )
 
 

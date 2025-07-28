@@ -3,6 +3,7 @@ package com.example.photogalleryapp.ui
 
 import android.content.res.Configuration
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -51,17 +52,21 @@ class MainActivity : AppCompatActivity() {
         viewModel.stateShow.observe(this) { state ->
             when (state) {
                 is StateShow.Error -> {
-                    showError(state.errorMessage)
+                    showError(state.message)
                 }
 
                 StateShow.Loading -> {}
 
                 is StateShow.Success -> {
                     binding.swipeRefreshLayout.isRefreshing = false
-                    adapter.submitList(state.photos.map { it.toDomain() }.toList())
+                    adapter.submitList(state.photos.toList())
                 }
 
-
+                is StateShow.Offline -> {
+                    binding.swipeRefreshLayout.isRefreshing = false
+                    adapter.submitList(state.photos.toList())
+                    Toast.makeText(this, "no Internet connection", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -115,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     private fun showError(message: String) {
         AlertDialog.Builder(this).apply {
             setTitle("Error")
-            setMessage(message ?: "")
+            setMessage(message )
             setPositiveButton("OK") { dialog, _ ->
                 dialog.dismiss()
             }
