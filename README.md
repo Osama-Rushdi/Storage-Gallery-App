@@ -43,7 +43,7 @@ Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 
 - Kotlin
 - MVVM Architecture
-- Retrofit & OkHttp
+- Retrofit 
 - Glide
 - Paging (Manual)
 - Material Components
