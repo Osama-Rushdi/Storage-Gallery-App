@@ -32,15 +32,21 @@ class StorageItemAdapter :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val photo = currentList[position]
 
-        holder.binding.shimmerEffect.apply {
+        if (photo.height > 0) {
+            val layoutParams = holder.binding.imageView.layoutParams
+
+            val aspectRatio = (photo.height/10 )
+            layoutParams.height = aspectRatio
+            holder.binding.imageView.layoutParams = layoutParams
 
         }
 
-        Glide.with(holder.binding.root)
-            .load(photo.url)
-            .centerCrop()
-            .into(holder.binding.imageView)
-
+        if (photo.url.isNotEmpty()) {
+            Glide.with(holder.binding.root)
+                .load(photo.url)
+                .centerCrop()
+                .into(holder.binding.imageView)
+        }
     }
 
     override fun getItemCount(): Int = currentList.size

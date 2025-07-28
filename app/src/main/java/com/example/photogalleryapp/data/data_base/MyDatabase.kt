@@ -7,10 +7,10 @@ import com.example.photogalleryapp.data.data_base.dao.photos_dao.PhotosDao
 import com.example.photogalleryapp.data.data_base.entities.PhotoEntity
 
 
-@Database(entities = [PhotoEntity::class], version =1 , exportSchema = false)
+@Database(entities = [PhotoEntity::class], version =2 , exportSchema = false)
 abstract class MyDatabase : RoomDatabase() {
 
-    abstract fun PhotosDao(): PhotosDao
+  abstract fun PhotosDao(): PhotosDao
 
 
 //    companion object {
