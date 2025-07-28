@@ -13,6 +13,7 @@ Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 - Light/Dark mode switch with animation.
 - Swipe to refresh.
 - Error handling with fallback message.
+- online and offline.
 
 ---
 
@@ -43,7 +44,8 @@ Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 
 - Kotlin
 - MVVM Architecture
-- Retrofit 
+- Retrofit
+- Room DB
 - Glide
 - Paging (Manual)
 - Material Components
