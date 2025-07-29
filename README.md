@@ -19,27 +19,31 @@ Built with Kotlin, MVVM, Retrofit, Glide, and Paging.
 
 ## 📱 Screenshots
 
-🖼 Screenshots
 
-🚀 Splash
+# 🚀 Splash
+
 ![splash](screenshots/splash.jpg)
 
-🌙 Home Dark
+# 🌙 Home Dark
+
 ![HomeDark](screenshots/HomeDark.jpg)
 
-☀ Home Light
+# ☀ Home Light
+
 ![homeLight](screenshots/homeLight.jpg)
 
-✨ Home Shimmer
+# ✨ Home Shimmer
+
 ![homeShimmer](screenshots/homeShimmer.jpg)
 
-🔄 Refresh
+# 🔄 Refresh
+
 ![refresh](screenshots/refresh.jpg)
 
 
 ---
 
-## 🎬 Demo Video (https://drive.google.com/file/d/1MSM-lQ3GioY3woNjWdi0NRX-bGYYwZu_/view?usp=drivesdk)
+## 🎬 Demo Video (https://drive.google.com/file/d/1MWUOdTleOETBTBPgAqStNSGpr3R_vJ8-/view?usp=drivesdk)
 
 ---
 
